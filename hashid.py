@@ -29,7 +29,7 @@ def analyze(hash):
 
     for i in result_all:
         if i in algorithm_list_charset.keys():
-            if (algorithm_list_charset.get(i)).full match(hash):
+            if (algorithm_list_charset.get(i)).fullmatch(hash):
                 result_most.append(i)
         else:
             result_least.append(i)
@@ -49,7 +49,6 @@ algorithm_list_charset = {
     "Sha-256": re.compile(r"[a-fA-F0-9]*"),
     "Sha-384": re.compile(r"[a-fA-F0-9]*"),
     "Sha-512": re.compile(r"[a-fA-F0-9]*"),
-    "Blowfish": re.compile(r"$2a\$\08\$(.)*"),
     # "": re.compile(r""),
 }
 
@@ -103,7 +102,6 @@ algorithm_list_len = {
     "Haval-256_3": 64,
     "Haval-256_4": 64,
     "Haval-256_5": 64,
-    "Blowfish": 80,
     "Ripemd-320": 80,
     "Sha-384": 96,
     "Sha-512": 128,
@@ -114,6 +112,7 @@ algorithm_list_len = {
 
 # BLAKE
 
+
 def main() -> None:
     args = parse_args()
 
@@ -123,7 +122,7 @@ def main() -> None:
         exit(0)
 
     if args.list:
-        for i in algorithm_list.keys():
+        for i in algorithm_list_len.keys():
             print(i)
         exit(0)
 
