@@ -24,6 +24,7 @@ def analyze(hash):
         return result
     return ["Unknown hash algorithm"]
 
+
 algorithm_list = {
     # "Sdbm": ?,
     # "Loselose": ?,
@@ -85,6 +86,7 @@ algorithm_list = {
     "Fnv-1a512": 128,
     "Fnv-1a1024": 256,
 }
+
 
 def main() -> None:
     args = parse_args()
