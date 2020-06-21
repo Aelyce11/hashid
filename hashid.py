@@ -1,4 +1,5 @@
 import argparse
+import sys
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Enter your hash")
@@ -13,7 +14,7 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 def analyze(hash):
-    if sys.getSizeOf(hash) == 128:
+    if sys.getsizeof(hash) == 128:
         return "size 128"
 
     return "unknown hash algorithm"
@@ -21,9 +22,12 @@ def analyze(hash):
 
 def main() -> None:
     args = parse_args()
-    if args.list:
-        show_hash_list()
-        exit(0)
+
+    print(analyze(args.hash))
+
+    # if args.list:
+    #     show_hash_list()
+    #     exit(0)
 
 
 if __name__ == "__main__":
