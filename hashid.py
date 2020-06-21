@@ -22,6 +22,9 @@ def analyze(hash):
         if (algorithm_list.get(i)).fullmatch(hash):
             result.append(i)
 
+    if len(result) == 0 :
+        return ["No matching algorithm found."]
+
     return result
 
 
@@ -29,7 +32,7 @@ algorithm_list = {
     "Blowfish-Eggdrop": re.compile(r"^\+[a-zA-Z0-9\/\.]{12}$"),
     "Blowfish-OpenBSD": re.compile(r"^\$2a\$[0-9]{0,2}?\$[a-zA-Z0-9.\/\.]{53}$"),
     "Blowfish-Crypt": re.compile(
-        r"^\$2[axy]{0,1}\$[a-zA-Z0-9.\/\.]{8}\$[a-zA-Z0-9.\/\.]{53}$"
+        r"^\$2[axy]{0,1}\$[a-zA-Z0-9\/\.]{8}\$[a-zA-Z0-9.\/\.]{53}$"
     ),
     "MD2": re.compile(r"^[a-fA-F0-9]{32}$"),
     "MD4": re.compile(r"^[a-fA-F0-9]{32}$"),
@@ -54,15 +57,16 @@ algorithm_list = {
     "SSHA-1": re.compile(r"^(\{SSHA\})?[a-zA-Z0-9\+\/]{32,38}?(==)?$"),
     "SSHA-1-Base64": re.compile(r"^\{SSHA\}[a-zA-Z0-9]{32,38}?(==)?$"),
     "SSHA-512-Base64": re.compile(r"^\{SSHA512\}[a-zA-Z0-9\+]{96}$"),
+    # TEST ALL ABOVE
     "Joomla_old": re.compile(r"^([0-9a-zA-Z]{32}):(\d{16,32})$"),
     "DES-Unix": re.compile(r"^.{0,2}[a-zA-Z0-9\/\.]{11}$"),
-    "Minecraft-Authme": re.compile(r"^\$sha\$[a-zA-Z0-9]{0,16}\$[a-fA-F0-9]{64}$"),
-    "Lotus_Domino": re.compile(r"^\(?[a-zA-Z0-9\+\/]{20}\)?$"),
-    "Lineage_II-C4": re.compile(r"^Ox[a-fA-F0-9]{32}$"),
-    "CRC-96-ZIP": re.compile(r"^[a-fA-F0-9]{24}$"),
+    # "Minecraft-Authme": re.compile(r"^\$sha\$[a-zA-Z0-9]{0,16}\$[a-fA-F0-9]{64}$"),
+    "Lotus_Domino-6": re.compile(r"^\(?[a-zA-Z0-9\+\/]{20}\)?$"),
+    # "Lineage_II-C4": re.compile(r"^Ox[a-fA-F0-9]{32}$"),
+    # "CRC-96-ZIP": re.compile(r"^[a-fA-F0-9]{24}$"),
     "Ripemd-320": re.compile(r"^[A-Fa-f0-9]{80}$"),
     "Oracle-11g": re.compile(r"^S:[A-Z0-9]{60}$"),
-    "MySQL-5.x": re.compile(r"^\*[a-f0-9]{40}$"),
+    "MySQL-5.x": re.compile(r"^[a-f0-9]{40}$"),
     "MySQL-3.x": re.compile(r"^[a-fA-F0-9]{16}$"),
     "OSX-v10.7": re.compile(r"^[a-fA-F0-9]{136}$"),
     "OSX-v10.8": re.compile(r"^\$ml\$[a-fA-F0-9\$]{199}$"),
@@ -73,8 +77,7 @@ algorithm_list = {
     "Adler-32": re.compile(r"^[a-f0-9]{8}$"),
 }
 
-# BLAKE
-
+# TODO: add crc-32
 
 def main() -> None:
     args = parse_args()
